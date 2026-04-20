@@ -1,0 +1,152 @@
+[
+  {
+    "id": "flower-01",
+    "name": "장미",
+    "nameEn": "Rose",
+    "color": "red",
+    "meaning": "사랑, 열정",
+    "season": ["spring", "summer"],
+    "priceRange": { "min": 3000, "max": 8000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-02",
+    "name": "튤립",
+    "nameEn": "Tulip",
+    "color": "pink",
+    "meaning": "사랑의 고백",
+    "season": ["spring"],
+    "priceRange": { "min": 2000, "max": 5000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-03",
+    "name": "프리지아",
+    "nameEn": "Freesia",
+    "color": "yellow",
+    "meaning": "순진무구, 천진난만",
+    "season": ["spring"],
+    "priceRange": { "min": 2000, "max": 4000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-04",
+    "name": "수국",
+    "nameEn": "Hydrangea",
+    "color": "purple",
+    "meaning": "진심, 변하지 않는 마음",
+    "season": ["summer"],
+    "priceRange": { "min": 4000, "max": 10000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-05",
+    "name": "카네이션",
+    "nameEn": "Carnation",
+    "color": "pink",
+    "meaning": "감사, 사랑",
+    "season": ["spring", "summer"],
+    "priceRange": { "min": 1500, "max": 4000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-06",
+    "name": "해바라기",
+    "nameEn": "Sunflower",
+    "color": "yellow",
+    "meaning": "당신만을 바라봐요",
+    "season": ["summer"],
+    "priceRange": { "min": 2000, "max": 5000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-07",
+    "name": "라넌큘러스",
+    "nameEn": "Ranunculus",
+    "color": "white",
+    "meaning": "매력적인, 빛나는",
+    "season": ["spring"],
+    "priceRange": { "min": 3000, "max": 7000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-08",
+    "name": "리시안셔스",
+    "nameEn": "Lisianthus",
+    "color": "purple",
+    "meaning": "영원한 사랑, 변치않는 마음",
+    "season": ["summer", "autumn"],
+    "priceRange": { "min": 3000, "max": 6000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-09",
+    "name": "안개꽃",
+    "nameEn": "Baby's Breath",
+    "color": "white",
+    "meaning": "순결, 청초",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "priceRange": { "min": 1000, "max": 3000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-10",
+    "name": "국화",
+    "nameEn": "Chrysanthemum",
+    "color": "white",
+    "meaning": "진실, 성실",
+    "season": ["autumn"],
+    "priceRange": { "min": 1500, "max": 4000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-11",
+    "name": "코스모스",
+    "nameEn": "Cosmos",
+    "color": "pink",
+    "meaning": "소녀의 순정",
+    "season": ["autumn"],
+    "priceRange": { "min": 1000, "max": 3000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-12",
+    "name": "아이리스",
+    "nameEn": "Iris",
+    "color": "purple",
+    "meaning": "좋은 소식, 지혜",
+    "season": ["spring"],
+    "priceRange": { "min": 2000, "max": 5000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-13",
+    "name": "유칼립투스",
+    "nameEn": "Eucalyptus",
+    "color": "mixed",
+    "meaning": "추억, 보호",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "priceRange": { "min": 2000, "max": 5000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-14",
+    "name": "델피늄",
+    "nameEn": "Delphinium",
+    "color": "blue",
+    "meaning": "당신을 사랑합니다",
+    "season": ["spring", "summer"],
+    "priceRange": { "min": 3000, "max": 7000 },
+    "imageUrl": ""
+  },
+  {
+    "id": "flower-15",
+    "name": "작약",
+    "nameEn": "Peony",
+    "color": "pink",
+    "meaning": "수줍음, 부귀",
+    "season": ["spring", "summer"],
+    "priceRange": { "min": 5000, "max": 12000 },
+    "imageUrl": ""
+  }
+]
