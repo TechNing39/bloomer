@@ -1,0 +1,57 @@
+[
+  {
+    "id": "shop-01",
+    "name": "꽃향기",
+    "address": "서울 마포구 연남동 123-4",
+    "lat": 37.5603,
+    "lng": 126.9221,
+    "phone": "02-1234-5678",
+    "businessHours": "09:00 - 20:00",
+    "flowerIds": ["flower-01", "flower-02", "flower-05", "flower-09", "flower-13", "flower-15"],
+    "imageUrl": ""
+  },
+  {
+    "id": "shop-02",
+    "name": "블루밍데이",
+    "address": "서울 마포구 서교동 456-7",
+    "lat": 37.5534,
+    "lng": 126.9189,
+    "phone": "02-2345-6789",
+    "businessHours": "10:00 - 21:00",
+    "flowerIds": ["flower-03", "flower-04", "flower-07", "flower-08", "flower-14"],
+    "imageUrl": ""
+  },
+  {
+    "id": "shop-03",
+    "name": "봄날의 꽃집",
+    "address": "서울 마포구 합정동 789-1",
+    "lat": 37.5497,
+    "lng": 126.9143,
+    "phone": "02-3456-7890",
+    "businessHours": "09:30 - 19:30",
+    "flowerIds": ["flower-06", "flower-10", "flower-11", "flower-12", "flower-13"],
+    "imageUrl": ""
+  },
+  {
+    "id": "shop-04",
+    "name": "플라워팩토리",
+    "address": "서울 마포구 망원동 321-5",
+    "lat": 37.5561,
+    "lng": 126.9087,
+    "phone": "02-4567-8901",
+    "businessHours": "10:00 - 20:00",
+    "flowerIds": ["flower-01", "flower-04", "flower-06", "flower-09", "flower-15"],
+    "imageUrl": ""
+  },
+  {
+    "id": "shop-05",
+    "name": "가든로즈",
+    "address": "서울 마포구 성산동 654-2",
+    "lat": 37.5638,
+    "lng": 126.9045,
+    "phone": "02-5678-9012",
+    "businessHours": "09:00 - 21:00",
+    "flowerIds": ["flower-02", "flower-03", "flower-05", "flower-07", "flower-08", "flower-12"],
+    "imageUrl": ""
+  }
+]
