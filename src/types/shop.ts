@@ -8,4 +8,9 @@ export interface Shop {
   businessHours: string;
   flowerIds: string[];
   imageUrl: string;
+  rating: number;
+  reviewCount: number;
+  tags: string[];
+  priceRange: '₩' | '₩₩' | '₩₩₩';
+  dist: string;
 }
