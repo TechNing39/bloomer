@@ -1,5 +1,6 @@
 import type { Flower, ColorTag } from '../../types/flower';
 import { useBuilderStore } from '../../store/builderStore';
+import { useMapStore } from '../../store/mapStore';
 
 interface Props {
   flower: Flower;
@@ -31,6 +32,7 @@ const SEASON_KR: Record<string, string> = {
 
 export default function FlowerDetailModal({ flower, onClose }: Props) {
   const addFlower = useBuilderStore(s => s.addFlower);
+  const setScreen = useMapStore(s => s.setScreen);
   const color = COLOR_MAP[flower.color];
   const emoji = FLOWER_EMOJI[flower.id] ?? '🌸';
 
@@ -43,6 +45,7 @@ export default function FlowerDetailModal({ flower, onClose }: Props) {
       unitPrice: flower.priceRange.min,
     });
     onClose();
+    setScreen('builder');
   }
 
   return (

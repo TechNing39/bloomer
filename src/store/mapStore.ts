@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type Screen = 'map' | 'list' | 'search';
+export type Screen = 'map' | 'list' | 'search' | 'builder';
 
 interface MapStore {
   screen: Screen;
