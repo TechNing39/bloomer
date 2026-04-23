@@ -8,7 +8,12 @@
     "phone": "02-1234-5678",
     "businessHours": "09:00 - 20:00",
     "flowerIds": ["flower-01", "flower-02", "flower-05", "flower-09", "flower-13", "flower-15"],
-    "imageUrl": ""
+    "imageUrl": "",
+    "rating": 4.9,
+    "reviewCount": 128,
+    "tags": ["부케", "장미", "프리저브드"],
+    "priceRange": "₩₩",
+    "dist": "120m"
   },
   {
     "id": "shop-02",
@@ -19,7 +24,12 @@
     "phone": "02-2345-6789",
     "businessHours": "10:00 - 21:00",
     "flowerIds": ["flower-03", "flower-04", "flower-07", "flower-08", "flower-14"],
-    "imageUrl": ""
+    "imageUrl": "",
+    "rating": 4.7,
+    "reviewCount": 94,
+    "tags": ["튤립", "화분"],
+    "priceRange": "₩₩₩",
+    "dist": "350m"
   },
   {
     "id": "shop-03",
@@ -30,7 +40,12 @@
     "phone": "02-3456-7890",
     "businessHours": "09:30 - 19:30",
     "flowerIds": ["flower-06", "flower-10", "flower-11", "flower-12", "flower-13"],
-    "imageUrl": ""
+    "imageUrl": "",
+    "rating": 4.5,
+    "reviewCount": 61,
+    "tags": ["들꽃", "야생화"],
+    "priceRange": "₩",
+    "dist": "500m"
   },
   {
     "id": "shop-04",
@@ -41,7 +56,12 @@
     "phone": "02-4567-8901",
     "businessHours": "10:00 - 20:00",
     "flowerIds": ["flower-01", "flower-04", "flower-06", "flower-09", "flower-15"],
-    "imageUrl": ""
+    "imageUrl": "",
+    "rating": 4.8,
+    "reviewCount": 203,
+    "tags": ["수국", "부케"],
+    "priceRange": "₩₩",
+    "dist": "720m"
   },
   {
     "id": "shop-05",
@@ -52,6 +72,11 @@
     "phone": "02-5678-9012",
     "businessHours": "09:00 - 21:00",
     "flowerIds": ["flower-02", "flower-03", "flower-05", "flower-07", "flower-08", "flower-12"],
-    "imageUrl": ""
+    "imageUrl": "",
+    "rating": 4.6,
+    "reviewCount": 87,
+    "tags": ["장미", "계절꽃"],
+    "priceRange": "₩₩",
+    "dist": "980m"
   }
 ]
