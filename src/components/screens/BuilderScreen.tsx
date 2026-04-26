@@ -76,7 +76,11 @@ export default function BuilderScreen() {
       setOccasion('');
       setSelectedColors([]);
     } catch (e) {
-      setAiError(e instanceof Error ? e.message : '추천 실패. 다시 시도해주세요.');
+      if (!navigator.onLine) {
+        setAiError('네트워크 연결을 확인해주세요.');
+      } else {
+        setAiError(e instanceof Error ? e.message : '추천에 실패했어요. 다시 시도해주세요.');
+      }
     } finally {
       setLoading(false);
     }
@@ -206,8 +210,18 @@ export default function BuilderScreen() {
               </div>
 
               {aiError && (
-                <div style={{ color: '#e53e3e', fontFamily: 'var(--ff-kr)', fontSize: 12, marginBottom: 10 }}>
-                  {aiError}
+                <div style={{ marginBottom: 10 }}>
+                  <div style={{ color: '#e53e3e', fontFamily: 'var(--ff-kr)', fontSize: 12, marginBottom: 6 }}>
+                    {aiError}
+                  </div>
+                  <button
+                    onClick={handleAiRecommend}
+                    style={{
+                      fontFamily: 'var(--ff-kr)', fontSize: 12, fontWeight: 600,
+                      color: 'var(--rose)', background: 'transparent', border: 'none',
+                      cursor: 'pointer', padding: 0, textDecoration: 'underline',
+                    }}
+                  >↻ 다시 시도</button>
                 </div>
               )}
 

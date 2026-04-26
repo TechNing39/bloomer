@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { useMapStore } from '../../store/mapStore';
 import { useAnalytics } from '../../hooks/useAnalytics';
+import { useGeolocation } from '../../hooks/useGeolocation';
 import shopsData from '../../data/shops.json';
 import type { Shop } from '../../types/shop';
 
@@ -25,6 +26,7 @@ const SearchIcon = () => (
 export default function MapScreen() {
   const { mapCenter, setMapCenter, setSelectedShopId, setScreen, setShopDetailId, openBuilderWithAi } = useMapStore();
   const { track } = useAnalytics();
+  useGeolocation();
   const [selIdx, setSelIdx] = useState(0);
   const [selCat, setSelCat] = useState(0);
 
