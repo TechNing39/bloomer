@@ -137,6 +137,18 @@ export default function ListScreen() {
 
       {/* Shop list */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 13px 12px' }}>
+        {shops.length === 0 && (
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            justifyContent: 'center', padding: '60px 0', gap: 12,
+          }}>
+            <span style={{ fontSize: 48 }}>🌿</span>
+            <div style={{ fontFamily: 'var(--ff-kr)', fontSize: 14, color: 'var(--muted)', textAlign: 'center' }}>
+              주변에 꽃집이 없어요<br />
+              <span style={{ fontSize: 12 }}>위치를 변경하거나 나중에 다시 시도해주세요</span>
+            </div>
+          </div>
+        )}
         {shops.map(shop => (
           <div key={shop.id} onClick={() => { setShopDetailId(shop.id); track('list_item_click', { shopId: shop.id }); }} style={{
             background: 'var(--white)', borderRadius: 16,
