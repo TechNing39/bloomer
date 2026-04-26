@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# 🌸 Bloomer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+동네 꽃집을 탐색하고, 나만의 꽃다발을 만들어보는 모바일 웹 앱
 
-Currently, two official plugins are available:
+**[→ 배포 링크](https://bloomer-iota.vercel.app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 주요 기능
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **지도 탐색** — 카카오맵 기반 주변 꽃집 마커 표시
+- **꽃집 상세** — 꽃집 정보 및 판매 꽃 목록 확인
+- **꽃다발 빌더** — 원하는 꽃과 포장을 선택해 꽃다발 구성
+- **AI 추천** — GROQ API 기반 꽃 조합 추천
+- **요약 & 연결** — 완성된 꽃다발 확인 후 꽃집으로 바로 연결
 
-## Expanding the ESLint configuration
+## 기술 스택
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| 분류 | 기술 |
+|------|------|
+| Frontend | React 19, TypeScript, Vite |
+| Styling | Tailwind CSS v4 |
+| 상태 관리 | Zustand |
+| 지도 | Kakao Maps JS API, react-kakao-maps-sdk |
+| AI | GROQ API (Llama 3) |
+| 배포 | Vercel |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 로컬 실행
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```bash
+# 패키지 설치
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 환경 변수 설정
+cp .env.example .env
+# .env에 VITE_KAKAO_MAP_KEY, VITE_GROQ_API_KEY 입력
+
+# 개발 서버 실행
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 환경 변수
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| 키 | 설명 |
+|----|------|
+| `VITE_KAKAO_MAP_KEY` | 카카오 JavaScript SDK 키 |
+| `VITE_GROQ_API_KEY` | GROQ API 키 |
