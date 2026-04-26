@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMapStore } from '../../store/mapStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import FlowerDetailModal from '../flower/FlowerDetailModal';
 import shopsData from '../../data/shops.json';
 import flowersData from '../../data/flowers.json';
@@ -28,8 +29,11 @@ function isOpen(businessHours: string): boolean {
 }
 
 export default function ShopDetailSheet() {
-  const { shopDetailId, setShopDetailId } = useMapStore();
+  const { shopDetailId, setShopDetailId, openBuilderWithAi } = useMapStore();
+  const { track } = useAnalytics();
   const [selectedFlower, setSelectedFlower] = useState<Flower | null>(null);
+
+  useEffect(() => { track('shop_detail_view', { shopId: shopDetailId ?? undefined }); }, []);
 
   const shop = shops.find(s => s.id === shopDetailId) ?? null;
   if (!shop) return null;
@@ -111,7 +115,9 @@ export default function ShopDetailSheet() {
           </div>
 
           {/* AI CTA */}
-          <button style={{
+          <button
+            onClick={() => { setShopDetailId(null); openBuilderWithAi(); }}
+            style={{
             width: '100%', padding: '12px 0', marginBottom: 16,
             background: 'var(--rose)', color: '#fff', border: 'none',
             borderRadius: 13, fontFamily: 'var(--ff-kr)',
@@ -135,7 +141,7 @@ export default function ShopDetailSheet() {
             {shopFlowers.map(flower => (
               <div
                 key={flower.id}
-                onClick={() => setSelectedFlower(flower)}
+                onClick={() => { setSelectedFlower(flower); track('flower_card_click', { flowerId: flower.id }); }}
                 style={{
                   background: 'var(--white)', borderRadius: 14,
                   border: '1.5px solid var(--border)', overflow: 'hidden',

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import flowersData from '../../data/flowers.json';
 import type { Flower, ColorTag } from '../../types/flower';
 import { useBuilderStore } from '../../store/builderStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 const COLOR_META: Record<ColorTag | 'all', { label: string; dot: string }> = {
   all:    { label: '전체',   dot: '#d4637a' },
@@ -27,6 +28,7 @@ const flowers = flowersData as Flower[];
 const COLOR_FILTERS = ['all', 'red', 'pink', 'white', 'yellow', 'purple', 'orange', 'blue', 'mixed'] as const;
 
 export default function FlowerPalette() {
+  const { track } = useAnalytics();
   const [activeColor, setActiveColor] = useState<'all' | ColorTag>('all');
   const { flowers: added, addFlower } = useBuilderStore();
 
@@ -44,6 +46,7 @@ export default function FlowerPalette() {
       color: flower.color,
       unitPrice: flower.priceRange.min,
     });
+    track('flower_added', { flowerId: flower.id });
   }
 
   return (

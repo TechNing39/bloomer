@@ -1,4 +1,5 @@
 import { useBuilderStore } from '../../store/builderStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 const WRAP_OPTIONS = [
   {
@@ -25,6 +26,7 @@ const WRAP_OPTIONS = [
 ];
 
 export default function WrapOptionSelector() {
+  const { track } = useAnalytics();
   const { wrapOption, setWrapOption } = useBuilderStore();
 
   return (
@@ -34,7 +36,7 @@ export default function WrapOptionSelector() {
         return (
           <button
             key={opt.id}
-            onClick={() => setWrapOption(opt.id)}
+            onClick={() => { setWrapOption(opt.id); track('wrap_option_selected', { option: opt.id }); }}
             style={{
               flex: 1, padding: '14px 8px', borderRadius: 16,
               border: active ? '2px solid var(--rose)' : '1.5px solid var(--border)',

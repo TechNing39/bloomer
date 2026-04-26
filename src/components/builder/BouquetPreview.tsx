@@ -1,4 +1,5 @@
 import { useBuilderStore } from '../../store/builderStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import type { ColorTag } from '../../types/flower';
 
 const FLOWER_EMOJI: Record<string, string> = {
@@ -15,6 +16,7 @@ const COLOR_DOT: Record<ColorTag, string> = {
 };
 
 export default function BouquetPreview() {
+  const { track } = useAnalytics();
   const { flowers, updateQuantity, removeFlower } = useBuilderStore();
 
   if (flowers.length === 0) {
@@ -70,8 +72,8 @@ export default function BouquetPreview() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <button
               onClick={() => {
-                if (item.quantity <= 1) removeFlower(item.flowerId);
-                else updateQuantity(item.flowerId, item.quantity - 1);
+                if (item.quantity <= 1) { removeFlower(item.flowerId); track('flower_removed', { flowerId: item.flowerId }); }
+                else { updateQuantity(item.flowerId, item.quantity - 1); track('qty_changed', { flowerId: item.flowerId, qty: item.quantity - 1 }); }
               }}
               style={qtyBtnStyle}
             >−</button>
@@ -80,7 +82,7 @@ export default function BouquetPreview() {
               color: 'var(--ink)', minWidth: 16, textAlign: 'center',
             }}>{item.quantity}</span>
             <button
-              onClick={() => updateQuantity(item.flowerId, item.quantity + 1)}
+              onClick={() => { updateQuantity(item.flowerId, item.quantity + 1); track('qty_changed', { flowerId: item.flowerId, qty: item.quantity + 1 }); }}
               style={{ ...qtyBtnStyle, background: 'var(--rose)', color: '#fff', borderColor: 'var(--rose)' }}
             >+</button>
           </div>

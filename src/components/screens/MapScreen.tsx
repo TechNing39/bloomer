@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import { useMapStore } from '../../store/mapStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import shopsData from '../../data/shops.json';
 import type { Shop } from '../../types/shop';
 
 const shops = shopsData as Shop[];
 const CATEGORIES = ['🌸 전체', '🌹 장미', '🌷 튤립', '💐 부케', '🤖 AI추천'];
+
+const CATEGORY_FILTER: ((shop: Shop) => boolean)[] = [
+  () => true,
+  (s) => s.flowerIds.includes('flower-01'),
+  (s) => s.flowerIds.includes('flower-02'),
+  (s) => s.tags.includes('부케'),
+  () => false,
+];
 
 const SearchIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -14,15 +23,26 @@ const SearchIcon = () => (
 );
 
 export default function MapScreen() {
-  const { mapCenter, setMapCenter, setSelectedShopId, setScreen, setShopDetailId } = useMapStore();
+  const { mapCenter, setMapCenter, setSelectedShopId, setScreen, setShopDetailId, openBuilderWithAi } = useMapStore();
+  const { track } = useAnalytics();
   const [selIdx, setSelIdx] = useState(0);
   const [selCat, setSelCat] = useState(0);
 
-  const selectedShop = shops[selIdx];
+  useEffect(() => { track('map_open'); }, []);
+
+  const filteredShops = shops.filter(CATEGORY_FILTER[selCat] ?? (() => true));
+  const selectedShop = filteredShops[selIdx] ?? filteredShops[0];
 
   function handleMarkerClick(i: number) {
     setSelIdx(i);
-    setSelectedShopId(shops[i].id);
+    setSelectedShopId(filteredShops[i].id);
+    track('marker_click', { shopId: filteredShops[i].id });
+  }
+
+  function handleCatSelect(i: number) {
+    if (i === 4) { openBuilderWithAi(); return; }
+    setSelCat(i);
+    setSelIdx(0);
   }
 
   return (
@@ -36,7 +56,7 @@ export default function MapScreen() {
           setMapCenter({ lat: map.getCenter().getLat(), lng: map.getCenter().getLng() })
         }
       >
-        {shops.map((shop, i) => (
+        {filteredShops.map((shop, i) => (
           <CustomOverlayMap
             key={shop.id}
             position={{ lat: shop.lat, lng: shop.lng }}
@@ -99,7 +119,7 @@ export default function MapScreen() {
           {CATEGORIES.map((c, i) => (
             <span
               key={c}
-              onClick={() => setSelCat(i)}
+              onClick={() => handleCatSelect(i)}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 4,
                 borderRadius: 100, padding: '5px 12px',
@@ -132,7 +152,17 @@ export default function MapScreen() {
 
       {/* Bottom shop card */}
       <div style={{ position: 'absolute', bottom: 16, left: 14, right: 14, zIndex: 20 }}>
-        <div style={{
+        {filteredShops.length === 0 && (
+          <div style={{
+            background: 'var(--white)', borderRadius: 16,
+            border: '1.5px solid var(--border)', padding: '20px 14px',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+            textAlign: 'center', fontFamily: 'var(--ff-kr)', fontSize: 13, color: 'var(--muted)',
+          }}>
+            해당 꽃을 취급하는 주변 꽃집이 없어요 🌿
+          </div>
+        )}
+        {filteredShops.length > 0 && selectedShop && <div style={{
           background: 'var(--white)', borderRadius: 16,
           border: '1.5px solid var(--border)',
           padding: 14, boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
@@ -170,7 +200,9 @@ export default function MapScreen() {
                     borderRadius: 13, padding: '8px 0', fontSize: 12,
                     fontFamily: 'var(--ff-kr)', fontWeight: 700, cursor: 'pointer',
                   }}>상세보기</button>
-                <button style={{
+                <button
+                  onClick={() => openBuilderWithAi()}
+                  style={{
                   flex: 1, background: 'transparent', color: 'var(--rose)',
                   border: '1.5px solid var(--rose)',
                   borderRadius: 13, padding: '7px 0', fontSize: 12,
@@ -181,7 +213,7 @@ export default function MapScreen() {
           </div>
           {/* Carousel dots */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 5, marginTop: 10 }}>
-            {shops.map((_, i) => (
+            {filteredShops.map((_, i) => (
               <div
                 key={i}
                 onClick={() => handleMarkerClick(i)}
@@ -193,7 +225,7 @@ export default function MapScreen() {
               />
             ))}
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   );
