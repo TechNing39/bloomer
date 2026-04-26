@@ -1,4 +1,5 @@
 import { useMapStore } from '../../store/mapStore';
+import { useAnalytics } from '../../hooks/useAnalytics';
 import shopsData from '../../data/shops.json';
 import type { Shop } from '../../types/shop';
 
@@ -32,7 +33,8 @@ const pill = (selected: boolean, soft = false): React.CSSProperties => ({
 });
 
 export default function ListScreen() {
-  const { setScreen, setShopDetailId } = useMapStore();
+  const { setScreen, setShopDetailId, openBuilderWithAi } = useMapStore();
+  const { track } = useAnalytics();
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100dvh', background: '#faf6f7', overflow: 'hidden' }}>
@@ -136,7 +138,7 @@ export default function ListScreen() {
       {/* Shop list */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 13px 12px' }}>
         {shops.map(shop => (
-          <div key={shop.id} onClick={() => setShopDetailId(shop.id)} style={{
+          <div key={shop.id} onClick={() => { setShopDetailId(shop.id); track('list_item_click', { shopId: shop.id }); }} style={{
             background: 'var(--white)', borderRadius: 16,
             border: '1.5px solid var(--border)', overflow: 'hidden', marginBottom: 10,
             cursor: 'pointer',
@@ -175,7 +177,9 @@ export default function ListScreen() {
                   <span key={t} style={{ ...pill(false), padding: '2px 9px', fontSize: 11 }}>{t}</span>
                 ))}
               </div>
-              <button style={{
+              <button
+                onClick={() => openBuilderWithAi()}
+                style={{
                 marginTop: 9, padding: '8px 0', width: '100%',
                 background: 'transparent', color: 'var(--rose)',
                 border: '1.5px solid var(--rose)', borderRadius: 13,

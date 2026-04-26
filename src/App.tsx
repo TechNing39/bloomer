@@ -4,6 +4,7 @@ import MapScreen from './components/screens/MapScreen';
 import ListScreen from './components/screens/ListScreen';
 import SearchScreen from './components/screens/SearchScreen';
 import BuilderScreen from './components/screens/BuilderScreen';
+import SummaryScreen from './components/screens/SummaryScreen';
 import ShopDetailSheet from './components/shop/ShopDetailSheet';
 
 export default function App() {
@@ -30,7 +31,8 @@ export default function App() {
       {screen === 'list' && <ListScreen />}
       {screen === 'search' && <SearchScreen />}
       {screen === 'builder' && <BuilderScreen />}
-      {screen !== 'builder' && shopDetailId && <ShopDetailSheet />}
+      {screen === 'summary' && <SummaryScreen />}
+      {screen !== 'builder' && screen !== 'summary' && shopDetailId && <ShopDetailSheet />}
     </div>
   );
 }

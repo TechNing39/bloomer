@@ -21,7 +21,7 @@ const pill = (selected: boolean, soft = false): React.CSSProperties => ({
 });
 
 export default function SearchScreen() {
-  const { setScreen } = useMapStore();
+  const { setScreen, openBuilderWithAi } = useMapStore();
   const [selFlowers, setSelFlowers] = useState<number[]>([0, 3]);
   const [selOccasions, setSelOccasions] = useState<number[]>([1]);
   const [selDist, setSelDist] = useState(1);
@@ -168,7 +168,9 @@ export default function SearchScreen() {
           <p style={{ fontFamily: 'var(--ff-kr)', fontSize: 12, color: 'var(--ink2)', lineHeight: 1.6, marginBottom: 10 }}>
             목적과 예산을 입력하면 AI가 최적의 꽃 조합을 찾아드려요 🌸
           </p>
-          <button style={{
+          <button
+            onClick={() => openBuilderWithAi()}
+            style={{
             width: '100%', padding: '10px 0',
             background: 'var(--rose)', color: '#fff', border: 'none',
             borderRadius: 13, fontFamily: 'var(--ff-kr)',
